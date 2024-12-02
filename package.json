@@ -1,0 +1,33 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "description": "Simple CRUD methods",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "start:dev": "npx nodemon",
+    "start:prod": "npm run build && node ./build/index.js",
+    "lint": "npx eslint ./src",
+    "dev": "tsc --watch",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aliaksandra Piakhota",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.4.1",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@types/node": "^22.7.7",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.13.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.16.0"
+  }
+}
