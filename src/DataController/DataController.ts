@@ -54,4 +54,35 @@ export class DataController {
       }
     });
   }
+
+  updateUser(id: string, body: ReqBody): Promise<ISuccessMessage> {
+    return new Promise((resolve, reject) => {
+      if (!id || !validate(id)) {
+        const error: IErrorMessage = { code: ErrorCodeEnum.BAD_REQUEST, message: errorMessages.userId_is_invalid };
+        reject(error);
+      }
+
+      const user = this.users.find((item) => item.id === id);
+      if (user) {
+        let updatedUser = user;
+        this.users = this.users.map((item) => {
+          if (item.id === id) {
+            updatedUser = {
+              id: item.id,
+              ...body,
+            };
+
+            return updatedUser;
+          }
+          return item;
+        });
+
+        const result: ISuccessMessage = { code: SuccessCodeEnum.OK, data: updatedUser };
+        resolve(result);
+      } else {
+        const error: IErrorMessage = { code: ErrorCodeEnum.FORBIDDEN, message: errorMessages.user_does_not_exist };
+        reject(error);
+      }
+    });
+  }
 }

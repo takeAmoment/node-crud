@@ -1,7 +1,9 @@
 import { createServer } from 'http';
 import * as dotenv from 'dotenv';
-import { HttpMethodEnum, HttpUrlEnum } from './types/types';
+import { ErrorCodeEnum, HttpMethodEnum, HttpUrlEnum } from './types/types';
 import { Router } from './Router/Router';
+import { sendResponse } from './utilities/utilities';
+import { errorMessages } from './variables/common';
 
 dotenv.config();
 
@@ -19,8 +21,11 @@ const server = createServer((req, res) => {
     case req.method === HttpMethodEnum.GET && req.url.startsWith(HttpUrlEnum.USERS):
       router.get(req, res);
       break;
+    case req.method === HttpMethodEnum.PUT && req.url.startsWith(HttpUrlEnum.USERS):
+      router.put(req, res);
+      break;
     default:
-      console.log('no such endpoint');
+      sendResponse(ErrorCodeEnum.FORBIDDEN, { message: errorMessages.endpoint_does_not_exist }, res);
   }
   // res.end(`Hello world ${req.method} ${req.method === HttpMethodEnum.POST && req.url === HttpUrlEnum.POST_USERS}`)
 });
