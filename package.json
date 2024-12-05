@@ -7,7 +7,7 @@
     "start": "tsc && node dist/app.js",
     "start:dev": "npx nodemon",
     "start:prod": "npm run build && node ./build/index.js",
-    "lint": "npx eslint ./src",
+    "lint": "npx eslint ./src --fix",
     "dev": "tsc --watch",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "test": "echo \"Error: no test specified\" && exit 1"
