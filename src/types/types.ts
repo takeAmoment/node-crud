@@ -7,7 +7,7 @@ export enum HttpMethodEnum {
 }
 
 export enum HttpUrlEnum {
-  POST_USERS = '/api/users',
+  USERS = '/api/users',
 }
 
 export enum SuccessCodeEnum {
@@ -37,7 +37,7 @@ export type ResData = IUser | IMessage | IUser[];
 
 export interface ISuccessMessage {
   code: SuccessCodeEnum;
-  data: IUser;
+  data: IUser | IUser[];
 }
 
 export interface IErrorMessage {

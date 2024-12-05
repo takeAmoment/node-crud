@@ -11,8 +11,11 @@ export class DataController {
     this.users = users;
   }
 
-  getUsers() {
-    return users;
+  getUsers(): Promise<ISuccessMessage> {
+    return new Promise((resolve) => {
+      const result: ISuccessMessage = { code: SuccessCodeEnum.OK, data: this.users };
+      resolve(result);
+    });
   }
 
   createUser(body: ReqBody): Promise<ISuccessMessage> {
@@ -24,7 +27,7 @@ export class DataController {
           id,
           ...body,
         };
-
+        this.users.push(user);
         const result: ISuccessMessage = { code: SuccessCodeEnum.CREATED, data: user };
         resolve(result);
       } else {

@@ -10,8 +10,11 @@ const router = new Router();
 
 const server = createServer((req, res) => {
   switch (true) {
-    case req.method === HttpMethodEnum.POST && req.url === HttpUrlEnum.POST_USERS:
+    case req.method === HttpMethodEnum.POST && req.url === HttpUrlEnum.USERS:
       router.post(req, res);
+      break;
+    case req.method === HttpMethodEnum.GET && req.url === HttpUrlEnum.USERS:
+      router.get(req, res);
       break;
     default:
       console.log('no such endpoint');
