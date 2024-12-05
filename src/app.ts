@@ -16,6 +16,9 @@ const server = createServer((req, res) => {
     case req.method === HttpMethodEnum.GET && req.url === HttpUrlEnum.USERS:
       router.get(req, res);
       break;
+    case req.method === HttpMethodEnum.GET && req.url.startsWith(HttpUrlEnum.USERS):
+      router.get(req, res);
+      break;
     default:
       console.log('no such endpoint');
   }
