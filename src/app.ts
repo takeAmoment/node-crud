@@ -24,6 +24,9 @@ const server = createServer((req, res) => {
     case req.method === HttpMethodEnum.PUT && req.url.startsWith(HttpUrlEnum.USERS):
       router.put(req, res);
       break;
+    case req.method === HttpMethodEnum.DELETE && req.url.startsWith(HttpUrlEnum.USERS):
+      router.delete(req, res);
+      break;
     default:
       sendResponse(ErrorCodeEnum.FORBIDDEN, { message: errorMessages.endpoint_does_not_exist }, res);
   }

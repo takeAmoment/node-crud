@@ -58,4 +58,15 @@ export class Router {
       return sendResponse(castomError.code, { message: castomError.message }, res);
     }
   }
+
+  async delete(req: IncomingMessage, res: ServerResponse<IncomingMessage>) {
+    try {
+      const id = this.findId(req);
+      const result = await this.dataController.deleteUser(id);
+      return sendResponse(result.code, result.data, res);
+    } catch (error) {
+      const castomError = error as IErrorMessage;
+      return sendResponse(castomError.code, { message: castomError.message }, res);
+    }
+  }
 }

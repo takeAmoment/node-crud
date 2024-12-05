@@ -11,6 +11,10 @@ export class DataController {
     this.users = users;
   }
 
+  public findUser(id: string): IUser {
+    return this.users.find((item) => item.id === id);
+  }
+
   getUsers(): Promise<ISuccessMessage> {
     return new Promise((resolve) => {
       const result: ISuccessMessage = { code: SuccessCodeEnum.OK, data: this.users };
@@ -25,7 +29,7 @@ export class DataController {
         reject(error);
       }
 
-      const user = this.users.find((item) => item.id === id);
+      const user = this.findUser(id);
       if (user) {
         const result: ISuccessMessage = { code: SuccessCodeEnum.OK, data: user };
         resolve(result);
@@ -62,7 +66,7 @@ export class DataController {
         reject(error);
       }
 
-      const user = this.users.find((item) => item.id === id);
+      const user = this.findUser(id);
       if (user) {
         let updatedUser = user;
         this.users = this.users.map((item) => {
@@ -78,6 +82,25 @@ export class DataController {
         });
 
         const result: ISuccessMessage = { code: SuccessCodeEnum.OK, data: updatedUser };
+        resolve(result);
+      } else {
+        const error: IErrorMessage = { code: ErrorCodeEnum.FORBIDDEN, message: errorMessages.user_does_not_exist };
+        reject(error);
+      }
+    });
+  }
+
+  deleteUser(id: string): Promise<ISuccessMessage> {
+    return new Promise((resolve, reject) => {
+      if (!id || !validate(id)) {
+        const error: IErrorMessage = { code: ErrorCodeEnum.BAD_REQUEST, message: errorMessages.userId_is_invalid };
+        reject(error);
+      }
+
+      const user = this.findUser(id);
+      if (user) {
+        this.users = this.users.filter((item) => item.id !== user.id);
+        const result = { code: SuccessCodeEnum.NO_CONTENT, data: { message: 'User was deleted' } };
         resolve(result);
       } else {
         const error: IErrorMessage = { code: ErrorCodeEnum.FORBIDDEN, message: errorMessages.user_does_not_exist };

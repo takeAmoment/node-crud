@@ -37,7 +37,7 @@ export type ResData = IUser | IMessage | IUser[];
 
 export interface ISuccessMessage {
   code: SuccessCodeEnum;
-  data: IUser | IUser[];
+  data: IUser | IUser[] | IMessage;
 }
 
 export interface IErrorMessage {
