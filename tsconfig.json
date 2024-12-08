@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "dist", // where to put the compiled JS files
-    "target": "ES2020", // which level of JS support to target
-    "module": "CommonJS", // which system for the program AMD, UMD, System, CommonJS
-
-    // Recommended: Compiler complains about expressions implicitly typed as 'any'
-    "noImplicitAny": true
+    "target": "ESNext",
+    "module": "ESNext",            // Allows TypeScript to output ESM-compliant JS
+    "moduleResolution": "node",    // Resolve modules in a Node.js-compatible manner
+    "esModuleInterop": true,       // Ensures compatibility with non-ESM modules
+    "outDir": "./dist",            // Outputs JavaScript to the dist directory
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true                 // Optional but recommended for stricter type-checking
   },
-  "include": ["src"], // which files to compile
-  "exclude": ["node_modules"] // which files to skip
+  "include": ["src/**/*"],          // Include your TypeScript files
+  "exclude": ["node_modules"]       // Exclude node_modules
 }

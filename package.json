@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Simple CRUD methods",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "tsc && node dist/app.js",
     "start:dev": "npx nodemon",
     "start:prod": "npm run build && node ./build/index.js",
+    "start:multi": "npx tsx ./src/server.ts",
     "lint": "npx eslint ./src --fix",
     "dev": "tsc --watch",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
@@ -27,6 +29,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.13.0",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.16.0"
   }
